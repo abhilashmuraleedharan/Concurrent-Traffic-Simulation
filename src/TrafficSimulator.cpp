@@ -7,11 +7,6 @@
 #include "Intersection.h"
 #include "Graphics.h"
 
-constexpr int total_vehicles = 6;
-constexpr int nyc_total_intersections = 6;
-constexpr int nyc_total_streets = 7;
-constexpr int paris_total_intersections = 9;
-constexpr int paris_total_streets = 8;
 
 // Paris
 void createTrafficObjects_Paris(std::vector<std::shared_ptr<Street>> &streets, std::vector<std::shared_ptr<Intersection>> &intersections, std::vector<std::shared_ptr<Vehicle>> &vehicles, std::string &filename, int nVehicles)
@@ -20,7 +15,7 @@ void createTrafficObjects_Paris(std::vector<std::shared_ptr<Street>> &streets, s
     filename = "../data/paris.jpg";
 
     // init traffic objects
-    int nIntersections = paris_total_intersections;
+    int nIntersections = 9;
     for (size_t ni = 0; ni < nIntersections; ni++)
     {
         intersections.push_back(std::make_shared<Intersection>());
@@ -38,7 +33,7 @@ void createTrafficObjects_Paris(std::vector<std::shared_ptr<Street>> &streets, s
     intersections.at(8)->setPosition(1700, 900); // central plaza
 
     // create streets and connect traffic objects
-    int nStreets = paris_total_streets;
+    int nStreets = 8;
     for (size_t ns = 0; ns < nStreets; ns++)
     {
         streets.push_back(std::make_shared<Street>());
@@ -62,7 +57,7 @@ void createTrafficObjects_NYC(std::vector<std::shared_ptr<Street>> &streets, std
     filename = "../data/nyc.jpg";
 
     // init traffic objects
-    int nIntersections = nyc_total_intersections;
+    int nIntersections = 6;
     for (size_t ni = 0; ni < nIntersections; ni++)
     {
         intersections.push_back(std::make_shared<Intersection>());
@@ -77,7 +72,7 @@ void createTrafficObjects_NYC(std::vector<std::shared_ptr<Street>> &streets, std
     intersections.at(5)->setPosition(750, 250);
 
     // create streets and connect traffic objects
-    int nStreets = nyc_total_streets;
+    int nStreets = 7;
     for (size_t ns = 0; ns < nStreets; ns++)
     {
         streets.push_back(std::make_shared<Street>());
@@ -123,7 +118,8 @@ int main()
     std::vector<std::shared_ptr<Intersection>> intersections;
     std::vector<std::shared_ptr<Vehicle>> vehicles;
     std::string backgroundImg;
-    int nVehicles = total_vehicles;
+    int nVehicles = 6;
+
     // createTrafficObjects_NYC(streets, intersections, vehicles, backgroundImg, nVehicles);
     createTrafficObjects_Paris(streets, intersections, vehicles, backgroundImg, nVehicles);
 
@@ -148,8 +144,8 @@ int main()
         trafficObjects.push_back(trafficObject);
     });
 
-    std::for_each(vehicles.begin(), vehicles.end(), [&trafficObjects](std::shared_ptr<Vehicle> &vehicles) {
-        std::shared_ptr<TrafficObject> trafficObject = std::dynamic_pointer_cast<TrafficObject>(vehicles);
+    std::for_each(vehicles.begin(), vehicles.end(), [&trafficObjects](std::shared_ptr<Vehicle> &vehicle) {
+        std::shared_ptr<TrafficObject> trafficObject = std::dynamic_pointer_cast<TrafficObject>(vehicle);
         trafficObjects.push_back(trafficObject);
     });
 
