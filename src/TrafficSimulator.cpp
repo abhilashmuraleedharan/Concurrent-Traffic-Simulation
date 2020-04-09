@@ -120,8 +120,8 @@ int main()
     std::string backgroundImg;
     int nVehicles = 6;
 
-    // createTrafficObjects_NYC(streets, intersections, vehicles, backgroundImg, nVehicles);
-    createTrafficObjects_Paris(streets, intersections, vehicles, backgroundImg, nVehicles);
+    createTrafficObjects_NYC(streets, intersections, vehicles, backgroundImg, nVehicles);
+    // createTrafficObjects_Paris(streets, intersections, vehicles, backgroundImg, nVehicles);
 
     /* PART 2 : simulate traffic objects */
 
